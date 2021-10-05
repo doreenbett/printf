@@ -1,71 +1,29 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stddef.h>
 /**
-*find_func - looks for the specifier
+*_printf - produces output according to a format
+*@format: character string
+*Return: numer of characters printed
 *
-*@a: charcater array
-*Return: NULL
-*/
-int (*find_func(char a))(va_list args)
-{
-	int i = 0;
-
-	spec arr[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"%", print_percent},
-		{NULL, NULL}
-	};
-	while (arr[i].test)
-	{
-		if (a == arr[i].test[0])
-			return (arr[i].f);
-
-		i++;
-	}
-	return (NULL);
-}
-/**
-*_printf - recreates the printf function
-*@format: string with format specifier
-*Return: number of characters printed
 */
 int _printf(const char *format, ...)
 {
-	int i, count = 0;
-	int (*m)(va_list);
-	va_list args;
+	int printed_chars;
 
-	va_start(args, format);
-
-	i = 0;
-
-	if (format[0] == '%' && format[1] == '\0')
+	conver_t f_list[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"b", print_binary},
+		{NULL, NULL}
+	};
+	if (format == NULL)
 		return (-1);
 
-	while (format != NULL && format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1] == '%')
-			{
-				count += putchar(format[i]);
-				i++;
-			}
-			else
-			{
-				m = find_func(format[i + 1]);
-				count += m(args);
-				i += 2;
-			}
-		}
-		count += putchar(format[i]);
-		i++;
-	}
-	putchar('\n');
-	va_end(args);
-
-	return (count);
+	va_start(arg_list, format);
+	/*calling parser function*/
+	printed_chars = parser(format, f_list, arg_list);
+	va_end(arg_list);
+	return (printed_chars);
 }

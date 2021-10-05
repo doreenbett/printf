@@ -1,20 +1,24 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <limits.h>
+#include <unistd.h>
 #include <stdio.h>
+#include <stdarg.h>
 /**
-*struct specifier - specifies a struct
-*@test: test character
+*struct convert - specifies a struct
+*@sym: test character
 *@f: the functions associated
 *
 */
-typedef struct specifier
+struct convert
 {
-	char *test;
-	int (*f)(va_list args);
-} spec;
+	char *sym;
+	int (*f)(va_list);
+};
+typedef struct convert conver_t
 
 int _printf(const char *format, ...);
+int parse(const char *format, conver_t f_list[], va_list arg_list);
 int print_c(va_list args);
 int print_s(va_list args);
 int print_percent(va_list args);
