@@ -1,6 +1,29 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stddef.h>
+/**
+*find_func- looks for the specifier
+*
+*/
+int (*find_func(char a))(va_list ars)
+{
+	int i = 0;
+
+	spec arr[] = {
+		{"c", print_c},
+		{"s", print_s},
+		{NULL, NULL}
+	};
+	while (arr[i].test)
+	{
+		if (a == arr[i].test[0])
+			return (arr[i].f);
+
+		i++;
+	}
+	return (NULL);
+}
 /**
 *_printf - recreates the printf function
 *@format: string with format specifier
@@ -8,36 +31,26 @@
 */
 int _printf(const char *format, ...)
 {
-	int i = 0, char *n;
+	int i, j = 0;
+	int (*m)(va_list);
+	va_list args;
 
-	va_list arg;
+	va_start(args, format);
 
-	va_start(arg, format);
-	for (n = format; n != '\0'; n++)
+	i = 0;
+	while (format != NULL && format[i] != '\0')
 	{
-		while (*n != '%')
+		if (format[i] == '%')
 		{
-			putchar(*n);
-			n++;
+			m = find_func(format[i + 1]);
+			j = m(args);
+			i += 2;
 		}
-		n++;
+		putchar(format[i]);
+		i++;
 	}
-	switch (*n)
-	{
-		case 'c':
-			i = va_arg(arg, int);
-			{
-				putchar(i);
-				break;
-			}
-		case 's':
-			s = va_arg(arg, char *);
-			{
-				puts(s);
-				break;
-			}
-	}
+	putchar('\n');
+	va_end(args);
 
-	va_end(arg);
-	return (n);
+	return (j);
 }
