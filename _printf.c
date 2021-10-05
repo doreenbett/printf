@@ -18,6 +18,8 @@ int _printf(const char *format, ...)
 		{"b", print_binary},
 		{NULL, NULL}
 	};
+	va_list arg_list;
+
 	if (format == NULL)
 		return (-1);
 
