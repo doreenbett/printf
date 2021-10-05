@@ -3,7 +3,7 @@
 #include <limits.h>
 #include <stdio.h>
 /**
-*struct - specifier - specifies a struct
+*struct specifier - specifies a struct
 *@test: test character
 *@f: the functions associated
 *
@@ -11,7 +11,7 @@
 typedef struct specifier
 {
 	char *test;
-	int(*m)(va_list args);
+	int (*f)(va_list args);
 } spec;
 
 int _printf(const char *format, ...);

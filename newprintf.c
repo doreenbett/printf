@@ -3,16 +3,19 @@
 #include <stdlib.h>
 #include <stddef.h>
 /**
-*find_func- looks for the specifier
+*find_func - looks for the specifier
 *
+*@a: charcater array
+*Return: NULL
 */
-int (*find_func(char a))(va_list ars)
+int (*find_func(char a))(va_list args)
 {
 	int i = 0;
 
 	spec arr[] = {
 		{"c", print_c},
 		{"s", print_s},
+		{"%", print_percent},
 		{NULL, NULL}
 	};
 	while (arr[i].test)
