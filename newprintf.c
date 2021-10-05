@@ -34,26 +34,38 @@ int (*find_func(char a))(va_list args)
 */
 int _printf(const char *format, ...)
 {
-	int i, j = 0;
+	int i, count = 0;
 	int (*m)(va_list);
 	va_list args;
 
 	va_start(args, format);
 
 	i = 0;
+
+	if (format[0] == '%' && format[1] == '\0')
+		return (-1);
+
 	while (format != NULL && format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
-			m = find_func(format[i + 1]);
-			j = m(args);
-			i += 2;
+			if (format[i + 1] == '%')
+			{
+				count += putchar(format[i]);
+				i++;
+			}
+			else
+			{
+				m = find_func(format[i + 1]);
+				count += m(args);
+				i += 2;
+			}
 		}
-		putchar(format[i]);
+		count += putchar(format[i]);
 		i++;
 	}
 	putchar('\n');
 	va_end(args);
 
-	return (j);
+	return (count);
 }
