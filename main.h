@@ -18,9 +18,24 @@ struct convert
 typedef struct convert conver_t
 
 int _printf(const char *format, ...);
-int parse(const char *format, conver_t f_list[], va_list arg_list);
-int print_c(va_list args);
-int print_s(va_list args);
-int print_percent(va_list args);
-int (*find_func(char a))(va_list args);
+int parser(const char *format, conver_t f_list[], va_list arg_list);
+int print_char(va_list);
+int print_string(va_list);
+int print_percent(va_list);
+int _write_char(char);
+int print_integer(va_list);
+int print_number(va_list);
+int print_binary(va_list);
+int reversed(va_list);
+int rot13(va_list);
+int unsigned_integer(va_list);
+int print_octal(va_list list);
+int print_hex(va_list list);
+int print_heX(va_list list);
+/*extra functions*/
+unsigned int base_len(unsigned int, int);
+char *rev_string(char *);
+void write_base(char *str);
+char *_memcpy(char *dest, char *src, unsigned int n);
+int print_unsigned_number(unsigned int);
 #endif
