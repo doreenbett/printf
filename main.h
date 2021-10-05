@@ -11,7 +11,7 @@
 typedef struct specifier
 {
 	char *test;
-	int(*f)(va_list args);
+	int(*m)(va_list args);
 } spec;
 
 int _printf(const char *format, ...);
