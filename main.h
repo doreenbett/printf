@@ -15,8 +15,8 @@ struct convert
 	char *sym;
 	int (*f)(va_list);
 };
-typedef struct convert conver_t
-
+typedef struct convert conver_t;
+/*main functions*/
 int _printf(const char *format, ...);
 int parser(const char *format, conver_t f_list[], va_list arg_list);
 int print_char(va_list);
