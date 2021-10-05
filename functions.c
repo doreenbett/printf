@@ -11,7 +11,7 @@ int print_c(va_list args)
 	int c;
 
 	c = va_arg(args, int);
-	putchar(c);
+
 	return (putchar(c));
 }
 
