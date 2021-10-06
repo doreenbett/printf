@@ -8,7 +8,7 @@
 */
 int print_c(va_list args)
 {
-	intc;
+	int c;
 
 	c = va_arg(args, int);
 
@@ -24,7 +24,7 @@ int print_c(va_list args)
 
 int print_s(va_list args)
 {
-	int i. count = 0;
+	int i, count = 0;
 	char *str;
 
 	i = 0;
@@ -33,7 +33,7 @@ int print_s(va_list args)
 
 	if (str == NULL)
 		str = "(null)";
-	while (str[i])  != '\0')
+	while ((str[i])  != '\0')
 	{
 		putchar(str[i]);
 		i++;
@@ -50,7 +50,7 @@ int print_s(va_list args)
 
 int print_percent(va_list args)
 {
-	char*str;
+	char *str;
 	str = "%";
 
 	if (va_arg(args, int) == *str)
