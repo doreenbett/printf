@@ -1,6 +1,5 @@
 functions.c
 main.h
-man_3_printf
 newprintf.c
 main.c
 a.out
