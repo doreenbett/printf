@@ -1,4 +1,4 @@
-## printf()
+## printf() [Licence: MIT](https://github.com/doreenbett/printf/blob/master/LICENSE)
 The printf project is a collaboration between Mildred Makori and Doreen Chepkoech, Students of Software Engineering at ALX School, where a function named "_printf" imitates the actual "printf" command located in the stdio.h library. It contains some of the basic features and functions found in the manual 3 of "printf".
 
 _printf() is a function that performs formatted output conversion and print data. Its prototype is the following:
